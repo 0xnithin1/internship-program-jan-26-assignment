@@ -81,12 +81,12 @@ graph TD
     subgraph "Phase 5 & 6: Asset Production"
     Analysis --> Cut["FFmpeg: Cut Clips (-ss start -t duration)"]
     Analysis --> Snap["FFmpeg: Screenshots (-vframes 1)"]
-    Cut --> Assets[/assets/ folder]
+    Cut --> Assets[assets folder]
     Snap --> Assets
     Assets --> Assemble[Generate Summary.md via Jinja2]
     end
 
-    Assemble --> End([Done)
+    Assemble --> End([Done])
 ```
 
 | Factor | Assessment |
