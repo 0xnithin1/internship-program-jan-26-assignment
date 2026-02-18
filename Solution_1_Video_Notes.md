@@ -68,13 +68,37 @@ Based on the comparative analysis, the **Hybrid Architecture** is selected.
 
 ```mermaid
 graph TD
-    %% Optimized Compact Flow
-    Start([Start]) --> Scan[Scan Folder]
-    Scan --> Extract[FFmpeg: Extract Audio]
-    Extract -->|Upload| STT[Deepgram API]
-    STT -->|Transcript| LLM[Claude 3.5 Sonnet]
-    LLM -->|JSON| Cuts[FFmpeg: Cut Clips]
-    Cuts --> End([Done])
+    subgraph "Phase 1: Ingestion"
+    Start([Start Batch]) --> Scan[Scan Input Folder]
+    Scan --> Check{Valid File?}
+    Check -- No --> LogError[Log to skipped.csv]
+    Check -- Yes --> FFprobe[Extract Metadata]
+    end
+
+    subgraph "Phase 2: Audio Extraction"
+    FFprobe --> Extract[FFmpeg: Extract Opus Audio]
+    Extract --> AudioFile(output_audio.opus)
+    end
+
+    subgraph "Phase 3: Transcription"
+    AudioFile --> Deepgram[Deepgram API]
+    Deepgram --> Transcript[JSON Transcript + Timestamps]
+    end
+
+    subgraph "Phase 4: Intelligence"
+    Transcript --> LLM[Claude 3.5 Sonnet]
+    LLM --> Analysis[JSON Summary + Highlights]
+    end
+
+    subgraph "Phase 5 & 6: Production"
+    Analysis --> Cut[FFmpeg: Cut Clips]
+    Analysis --> Snap[FFmpeg: Screenshots]
+    Cut --> Assets[Assets Folder]
+    Snap --> Assets
+    Assets --> Assemble[Generate Summary.md]
+    end
+    
+    Assemble --> End([End Job])
 ```
 
 **Phase 1: Ingestion and Validation**
