@@ -1,3 +1,16 @@
+<div align="center">
+
+### 👤 Submitted by: **Nithin N**
+
+> ⚠️ **Note:** My primary GitHub account is **[Nithin9585](https://github.com/Nithin9585)** — due to login issues, this submission is made from a secondary account.
+> To verify my profile, projects, and work history, please visit:
+>
+> ## 🔗 [github.com/Nithin9585](https://github.com/Nithin9585)
+
+</div>
+
+---
+
 # GenAI Assignment:
 
 **Evaluation Criteria**
