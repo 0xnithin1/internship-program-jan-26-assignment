@@ -232,11 +232,3 @@ response = client.generate_content(
 | Line breaks broken | Literal newline in JSON | Enforce `\n` rule in prompt + post-process: `content.replace('\n', '\\n')` |
 
 ---
-
-## Appendix: Persona Presets
-
-| Persona Type | Tone | Formatting | Focus |
-|---|---|---|---|
-| Modern Founder | Vulnerable, Ambitious | No emojis, lowercase | Building in public, lessons learned |
-| Technical Expert | Precise, Analytical | Bullets, clear headers | How-to guides, tool reviews |
-| Industry Disrupter | Bold, Visionary | One-line paragraphs | Challenging norms, future trends |

@@ -200,13 +200,3 @@ Output:   John-Doe_OfferLetter_2024-03-15.pdf
 
 ---
 
-## Error Handling Summary
-
-| Failure | Handling |
-|---|---|
-| Split XML runs | Pre-processing step merges fragmented runs before GenAI scan |
-| GenAI misses a field | User can manually add/edit fields in the Smart Mapper UI |
-| Row missing required field | Marked FAILED in report; rest of batch continues |
-| Font substitution on Linux | Fonts volume mounted in Gotenberg Docker container |
-| Google Sheets rate limit | Exponential backoff: 1s → 2s → 4s on 429 errors |
-| Malicious DOCX (XXE) | XML parser configured to disable external entity resolution |
